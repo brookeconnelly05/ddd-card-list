@@ -65,7 +65,7 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
       width: 400px;
       background: #fff;
         color: var(--ddd-theme-default-coalyGray);
-        background-color: var(--ddd-theme-accent);
+        /* background-color: var(--ddd-theme-accent); */
         font-family: var(--ddd-font-navigation); 
       }
       .card-header{
@@ -73,7 +73,7 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
         height:600px;
         display:flex;
         flex-direction: column;
-        background-color:var(--ddd-theme-default-shrineLight);
+        /* background-color:var(--ddd-theme-default-shrineLight); */
       }
       .card-header img {
       width: 100%;
