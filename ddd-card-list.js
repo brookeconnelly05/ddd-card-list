@@ -65,10 +65,36 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
       :host {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
-      padding: 16px;
+      gap: var(--ddd-spacing-4);
+      padding: var(--ddd-spacing-4);
       background: var(--ddd-accent, #f5f5f5);
     }
+
+
+      .card-grid {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+
+      @media (min-width: 1024px) {
+        .card-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (min-width: 768px) and (max-width: 1023px) {
+        .card-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 767px) {
+        .card-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    
       
       h3 span {
         font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
@@ -79,13 +105,9 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
- <div class="card-header"></div>
-      <div class="card-content">
-        <h3>${this.title}</h3>
-        <p>${this.label}</p>
-        <a href="${this.link}" target="_blank">Learn More</a>
+ <div class="card-grid" style="background-color: var(--ddd-accent-${this.dddAccent}, ${this.dddAccent});">
+        <slot></slot>
       </div>
-      <div class="card-footer" style="background: ${this.dddPrimary ? `var(--ddd-primary-${this.dddPrimary})` : 'var(--ddd-primary, #0072ce)'}"></div>
 `;
   }
 

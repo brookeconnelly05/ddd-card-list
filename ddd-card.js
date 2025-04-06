@@ -58,23 +58,39 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
     return [super.styles,
     css`
       :host {
-        display: block;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+        display: inline-block;
+        margin:var(--ddd-spacing-2);
+      border-radius: var(--ddd-radius-sm);
       overflow: hidden;
-      max-width: 300px;
+      width: 400px;
       background: #fff;
-        color: var(--ddd-theme-primary);
+        color: var(--ddd-theme-default-coalyGray);
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation); 
+      }
+      .card-header{
+        width:100%;
+        height:600px;
+        display:flex;
+        flex-direction: column;
+        background-color:var(--ddd-theme-default-shrineLight);
       }
       .card-header img {
       width: 100%;
       height: auto;
       display: block;
     }
+    
+
+    .bar{
+      display:flex;
+      bottom:var(--ddd-spacing-0);
+      width:100%;
+      height: 10px;
+      background-color: var(--ddd-primary-2);
+    }
     .card-content {
-      padding: 16px;
+      padding: var(--ddd-spacing-4);
     }
     .card-footer {
       height: 8px;
@@ -83,6 +99,14 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
       h3 span {
         font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
       }
+      .image{
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+
+      }
+      
+     
     `];
   }
 
@@ -90,13 +114,20 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
   render() {
     return html`
  <div class="card-header">
+  <div class="imgage">
         <img src="${this.image}" alt="${this.title}" />
-      </div>
-      <div class="card-footer" style="background: ${this.dddPrimary ? `var(--ddd-primary-${this.dddPrimary})` : 'var(--ddd-primary, #0072ce)'}"></div>
+        <div class="bar"></div>
+        </div>
+      
+      
+      <!-- <div class="card-footer" style="background: ${this.dddPrimary ? `var(--ddd-primary-${this.dddPrimary})` : 'var(--ddd-primary, #0072ce)'}"></div> -->
       <div class="card-content">
         <h3 class="card-title">${this.title}</h3>
         <p class="card-label">${this.label}</p>
-        <a href="${this.link}" target="_blank">Learn More</a>
+       <button>
+        <a href="${this.link}" target="_blank">Explore</a>
+        </button>
+      </div>
       </div>
       
 `;
