@@ -73,6 +73,7 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
         height:600px;
         display:flex;
         flex-direction: column;
+       
         /* background-color:var(--ddd-theme-default-shrineLight); */
       }
       .card-header img {
@@ -105,6 +106,23 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
         overflow: hidden;
 
       }
+      button {
+          width: 100%;
+          background-color: #004684;
+          color:white;
+          border: none;
+          padding: 12px 20px;
+          font-size: 16px;
+          font-weight: bold;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease-in-out;
+          margin-bottom: 15px;
+        }
+        a {
+          background-color: white;
+        }
+        
       
      
     `];
@@ -125,7 +143,7 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
         <h3 class="card-title">${this.title}</h3>
         <p class="card-label">${this.label}</p>
        <button>
-        <a href="${this.link}" target="_blank">Explore</a>
+        <a href="${this.link}" target="_blank">Explore ></a>
         </button>
       </div>
       </div>

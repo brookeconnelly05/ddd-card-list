@@ -69,7 +69,12 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
       padding: var(--ddd-spacing-4);
       background: var(--ddd-accent, #f5f5f5);
     }
-
+    :host {
+        display: block;
+        background-color: var(--ddd-accent, #f5f5f5);
+        padding: 2rem;
+        box-sizing: border-box;
+      }
 
       .card-grid {
         display: grid;
