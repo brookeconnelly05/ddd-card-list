@@ -2,8 +2,8 @@
  * Copyright 2025 brookeconnelly05
  * @license Apache-2.0, see LICENSE for full text.
  */
-import { LitElement, html, css } from "lit";
-import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
+import { html, css } from "lit";
+import { DDDPulseEffectSuper, DDD } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
 /**
@@ -12,7 +12,7 @@ import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
  * @demo index.html
  * @element ddd-card-list
  */
-export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
+export class DddCard extends DDDPulseEffectSuper(I18NMixin(DDD)) {
 
   static get tag() {
     return "ddd-card";
@@ -80,6 +80,7 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
       width: 100%;
       height: auto;
       display: block;
+      /* border-bottom: var(--ddd-theme-primary) 15px solid; */
     }
     
 
@@ -95,7 +96,7 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
     }
     .card-footer {
       height: 8px;
-      background: var(--ddd-primary, #0072ce);
+      background: var(--ddd-theme-primary);
     }
       h3 span {
         font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
@@ -108,20 +109,57 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
       }
       button {
           width: 100%;
-          background-color: #004684;
-          color:white;
-          border: none;
-          padding: 12px 20px;
-          font-size: 16px;
-          font-weight: bold;
-          border-radius: 5px;
+          background-color:var(--ddd-theme-default-beaverBlue);
+          color: var(--ddd-theme-default-white);
+          border: var(--ddd-border-0);
+          font-size: var(--ddd-font-size-4xs);
+          font-weight: var(--ddd-font-weight-bold);
+          border-radius: var(--ddd-radius-sm);
           cursor: pointer;
           transition: background-color 0.3s ease-in-out;
-          margin-bottom: 15px;
         }
-        a {
-          background-color: white;
+      
+        .link {
+        display: block;
+        text-align: center;
+        padding: var(--ddd-spacing-2);
+        margin-bottom: var(--ddd-spacing-4);
+        background-color: var(--ddd-theme-default-beaverBlue);
+        color: var(--ddd-theme-default-white);
+        border-radius: var(--ddd-radius-sm);
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .link a {
+        
+        font-weight: var(--ddd-font-weight-regular);
+        font-family: var(--ddd-font-primary);
+        text-decoration: none;
+        
+      }
+      .link:hover button {
+  background-color: var(--ddd-primary-2);
+}
+
+      .link:hover {
+        background-color: var(--ddd-primary-2);
+      }
+      
+      .button-holder {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10px; /* Adjust spacing */
         }
+
+
+       
+        p{
+          height: 100px;
+        }
+
+
+  
         
       
      
@@ -138,13 +176,22 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
         </div>
       
       
-      <!-- <div class="card-footer" style="background: ${this.dddPrimary ? `var(--ddd-primary-${this.dddPrimary})` : 'var(--ddd-primary, #0072ce)'}"></div> -->
+      <div class="card-footer" style="background: ${this.dddPrimary ? `var(--ddd-primary-${this.dddPrimary})` : 'var(--ddd-primary, #0072ce)'}"></div>
       <div class="card-content">
         <h3 class="card-title">${this.title}</h3>
         <p class="card-label">${this.label}</p>
-       <button>
-        <a href="${this.link}" target="_blank">Explore ></a>
-        </button>
+
+
+        <div class="link">
+          <div class="button-holder">
+          <button @click=${this.clickEvent}>Explore ></button>
+          </div>
+          </div>
+       <!-- <button>
+
+       
+        <a href="${this.link}" target="_blank">Explore > </a>
+        </button> -->
       </div>
       </div>
       
@@ -155,8 +202,83 @@ export class DddCard extends DDDSuper(I18NMixin(LitElement)) {
    * haxProperties integration via file reference
    */
   static get haxProperties() {
-    return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url)
-      .href;
+    return {
+      type: "element",
+      canScale: true,
+
+      canEditSource: true,
+      gizmo: {
+        title: "Call to action",
+        description: "A simple button with a link to take action.",
+        icon: "image:crop-16-9",
+        color: "orange",
+        tags: ["Layout", "marketing", "button", "link", "url", "design", "cta"],
+        handles: [
+          {
+            type: "link",
+            source: "link",
+            title: "label",
+          },
+        ],
+        meta: {
+          author: "HAXTheWeb core team",
+        },
+      },
+      settings: {
+        configure: [
+          {
+            property: "label",
+            title: "Label",
+            description: "Link label",
+            inputMethod: "textfield",
+            required: true,
+          },
+          {
+            property: "link",
+            title: "Link",
+            description: "Enter a link to any resource",
+            inputMethod: "haxupload",
+            noVoiceRecord: true,
+            noCamera: true,
+            required: true,
+          },
+          {
+            property: "accentColor",
+            title: "Accent Color",
+            description: "An optional accent color.",
+            inputMethod: "colorpicker",
+            icon: "editor:format-color-fill",
+          },
+          {
+            property: "hideIcon",
+            title: "Hide icon",
+            description: "Hide the icon used to accent text",
+            inputMethod: "boolean",
+          },
+        ],
+        advanced: [
+          {
+            property: "icon",
+            title: "Icon",
+            description: "Action link icon",
+            inputMethod: "iconpicker",
+          },
+        ],
+      },
+      saveOptions: {
+        unsetAttributes: ["colors", "element-visible"],
+      },
+      demoSchema: [
+        {
+          tag: "simple-cta",
+          properties: {
+            label: "Click to learn more",
+            link: "https://haxtheweb.org/",
+          },
+          content: "",
+        },
+      ],
+    };
   }
 }
 

@@ -63,26 +63,36 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
     css`
 
       :host {
-      display: flex;
+      display: block;
       flex-wrap: wrap;
       gap: var(--ddd-spacing-4);
       padding: var(--ddd-spacing-4);
       background: var(--ddd-accent, #f5f5f5);
+
+
+      
     }
     :host {
-        display: block;
         background-color: var(--ddd-accent, #f5f5f5);
-        padding: 2rem;
+        padding: var(--ddd-spacing-2);
         box-sizing: border-box;
       }
+      div ::slotted(*) {
+          display: inline-block;
+          margin: 0 10px 10px 0; 
+          box-shadow:  var( --ddd-boxShadow-sm);
+        }
 
       .card-grid {
         display: grid;
-        gap: 2rem;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        margin: var(--ddd-spacing-2);
+          padding: var(--ddd-spacing-40);
+        gap: var(--ddd-spacing-2);
+        grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+        justify-content: flex-start;
       }
 
-      @media (min-width: 1024px) {
+      /* @media (min-width: 1024px) {
         .card-grid {
           grid-template-columns: repeat(3, 1fr);
         }
@@ -98,7 +108,7 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
         .card-grid {
           grid-template-columns: 1fr;
         }
-      }
+      } */
     
       
       h3 span {
@@ -110,7 +120,7 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
- <div class="card-grid" style="background-color: var(--ddd-accent-${this.dddAccent}, ${this.dddAccent});">
+ <div class="card-grid" style="background-color: var(--ddd-accent-${this.dddAccent}, ${this.dddPrimary});">
         <slot></slot>
       </div>
 `;
