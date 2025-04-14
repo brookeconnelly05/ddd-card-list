@@ -88,7 +88,7 @@ export class DddCardList extends DDDSuper(I18NMixin(LitElement)) {
         margin: var(--ddd-spacing-2);
           padding: var(--ddd-spacing-40);
         gap: var(--ddd-spacing-2);
-        grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(395px, 1fr));
         justify-content: flex-start;
       }
 

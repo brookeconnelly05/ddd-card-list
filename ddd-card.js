@@ -96,7 +96,7 @@ export class DddCard extends DDDPulseEffectSuper(I18NMixin(DDD)) {
     }
     .card-footer {
       height: 8px;
-      background: var(--ddd-theme-primary);
+      background: var(--ddd-primary, #0072ce);
     }
       h3 span {
         font-size: var(--ddd-card-list-label-font-size, var(--ddd-font-size-s));
@@ -176,7 +176,7 @@ export class DddCard extends DDDPulseEffectSuper(I18NMixin(DDD)) {
         </div>
       
       
-      <div class="card-footer" style="background: ${this.dddPrimary ? `var(--ddd-primary-${this.dddPrimary})` : 'var(--ddd-primary, #0072ce)'}"></div>
+      <!-- <div class="card-footer" style="background: ${this.dddPrimary ? `var(--ddd-primary-${this.dddPrimary})` : 'var(--ddd-primary, #0072ce)'}"></div> -->
       <div class="card-content">
         <h3 class="card-title">${this.title}</h3>
         <p class="card-label">${this.label}</p>
@@ -279,6 +279,9 @@ export class DddCard extends DDDPulseEffectSuper(I18NMixin(DDD)) {
         },
       ],
     };
+  }
+  clickEvent() {
+    window.open(this.link);
   }
 }
 
